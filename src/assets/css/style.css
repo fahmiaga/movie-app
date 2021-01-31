@@ -1,0 +1,16 @@
+.movies-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 16px;
+}
+
+.movie-item img {
+  width: 100%;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.movie-item:hover {
+  transform: scale(1, 1.03);
+  transition: 0.3s;
+}
