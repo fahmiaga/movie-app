@@ -1,7 +1,11 @@
+* {
+  font-family: "roboto", sans-serif;
+}
+
 .movies-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 16px;
+  grid-gap: 20px;
 }
 
 .movie-item img {
@@ -13,4 +17,12 @@
 .movie-item:hover {
   transform: scale(1, 1.03);
   transition: 0.3s;
+}
+
+.movie-info li {
+  list-style: none;
+}
+
+.bold {
+  font-weight: 700;
 }

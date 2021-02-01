@@ -1,6 +1,7 @@
 const initialState = {
   movies: [],
   genres: [],
+  movie: [],
   id: 0,
 };
 
@@ -22,6 +23,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         movies: payload,
         id: payload,
+      };
+    case "GET_MOVIE_BY_ID":
+      return {
+        ...state,
+        movie: payload,
       };
     default:
       return { ...state };

@@ -1,4 +1,5 @@
 import axios from "axios";
+import _ from "lodash";
 export const getMovies = () => {
   return (dispatch) => {
     return axios
@@ -6,10 +7,16 @@ export const getMovies = () => {
         "https://api.themoviedb.org/3/movie/popular?api_key=b8ef0f01e1576b7cc5057b3500920495&language=en-US&page=1"
       )
       .then((res) => {
-        dispatch({
-          type: "GET_MOVIES",
-          payload: res.data.results,
-        });
+        if (res.data.results && !_.isEmpty(res.data.results)) {
+          dispatch({
+            type: "GET_MOVIES",
+            payload: res.data.results,
+          });
+        }
+        // dispatch({
+        //   type: "GET_MOVIES",
+        //   payload: res.data.results,
+        // });
       })
       .catch((err) => console.log(err));
   };
@@ -41,7 +48,20 @@ export const getMoviesByGenre = (id) => {
         dispatch({
           type: "GET_MOVIES_BY_GENRES",
           payload: res.data.results,
-          currentGenre: id,
+        });
+      });
+  };
+};
+export const getMovieById = (id) => {
+  return (dispatch) => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${id}?api_key=8508a0bd1efc493c4bfa095b6a37f250&language=en-US`
+      )
+      .then((res) => {
+        dispatch({
+          type: "GET_MOVIE_BY_ID",
+          payload: res.data,
         });
       });
   };

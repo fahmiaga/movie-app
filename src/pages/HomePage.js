@@ -4,22 +4,28 @@ import { getMovies, getGenres, getMoviesByGenre } from "../redux/action/movie";
 import { Container, Button } from "reactstrap";
 import Navbar from "../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
+import _ from "lodash";
 // import axios from "axios";
 
 const imgUrl = "https://image.tmdb.org/t/p/w500";
 
 const HomePage = (props) => {
   const [input, setInput] = useState("");
+  const [newMovies, setNewMovies] = useState([]);
+  // let newMovies = [];
 
   useEffect(() => {
     props.getMovies();
+
+    setNewMovies(props.movies);
+    // newMovies = [...props.movies];
   }, []);
 
   useEffect(() => {
     props.getGenres();
   }, []);
 
-  console.log(props.movies);
+  console.log("isEmpty movies =>, ", _.isEmpty(props.movies));
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -31,7 +37,7 @@ const HomePage = (props) => {
       return i.title.toLowerCase().match(input);
     });
   }
-
+  console.log("New Movies:", newMovies);
   return (
     <div>
       <Navbar />
@@ -44,6 +50,7 @@ const HomePage = (props) => {
         value={input}
       />
       <Container className="mt-4">
+        {console.log("Genres:", props.genres)}
         {props.genres.length !== 0 ? (
           props.genres.map((genre) => (
             <Button
