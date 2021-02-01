@@ -18,7 +18,8 @@ function MovieDetail(props) {
         <Jumbotron
           style={{
             backgroundImage: `url(${imgUrl}/${props.movie.backdrop_path})`,
-            backgroundRepeat: "round",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
             opacity: "90%",
             color: "white",
           }}
